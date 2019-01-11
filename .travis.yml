@@ -19,3 +19,17 @@ after_success:
   - docker push drazziweht/multi-nginx
   - docker push drazziweht/multi-server
   - docker push drazziweht/multi-worker
+
+deploy: 
+  provider: elasticbeanstalk
+  region: eu-west-2
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-eu-west-2-443091422083
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
+    
